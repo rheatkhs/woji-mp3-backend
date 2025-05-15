@@ -13,9 +13,8 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-const SUPABASE_URL = "https://xxetpfobzupsoxfppqfm.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4ZXRwZm9ienVwc294ZnBwcWZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyOTU0OTcsImV4cCI6MjA2Mjg3MTQ5N30.vp9yEgxgvDM5R44uSaH7XY8BHZo8d7F9IPF0FyHK6D4";
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const BUCKET_NAME = "mp3-files";
 
@@ -46,7 +45,7 @@ async function processDownloadJob(url, jobId) {
     extractAudio: true,
     audioFormat: "mp3",
     output: outputTemplate,
-    ffmpegLocation: "C:/ffmpeg/bin/ffmpeg.exe",
+    // ffmpegLocation: "C:/ffmpeg/bin/ffmpeg.exe",
   });
 
   if (!fsSync.existsSync(outputMp3)) {
